@@ -27,6 +27,14 @@ public class Restaurant {
      */
     protected Restaurant() {/** do nothing*/}
 
+    /**
+     * Constructs a new {@code Restaurant} instance with the provided attributes.
+     *
+     * @param id                the unique identifier of the restaurant
+     * @param averageBillsEnum  the average bills of the restaurant
+     * @param openHours         the open hours of the restaurant
+     *
+     */
     public Restaurant(UUID id, AverageBillsEnum averageBillsEnum, List<String> openHours) {
         this.id = id;
         this.averageBillsEnum = averageBillsEnum;
