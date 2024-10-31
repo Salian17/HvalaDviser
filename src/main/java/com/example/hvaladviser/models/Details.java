@@ -4,9 +4,24 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 import java.util.UUID;
+
+/**
+ * This class representing Details model.
+ *
+ * @property id The id of Details.
+ * @property priceRange The price range in restaurant.
+ * @property openHours The info about restaurant.
+ * @property specialDiets The special diets in restaurant.
+ * @property features The features in restaurant.
+ * @property cuisines The cuisines in restaurant.
+ * @property meals The meals in restaurant.
+ *
+ * @author Salian17
+ */
 
 @Entity
 public class Details {
@@ -18,7 +33,20 @@ public class Details {
     private List<String> cuisines;
     private List<String> meals;
 
-    protected Details() {}
+    /**
+     *  Protected constructor for JPA.
+      */
+    protected Details() {/** do nothing */}
+
+    public Details(UUID id, String priceRange, String about, List<String> specialDiets, List<String> features, List<String> cuisines, List<String> meals) {
+        this.id = id;
+        this.priceRange = priceRange;
+        this.about = about;
+        this.specialDiets = specialDiets;
+        this.features = features;
+        this.cuisines = cuisines;
+        this.meals = meals;
+    }
 
     @Id
     @GeneratedValue
@@ -29,7 +57,7 @@ public class Details {
     public void setId(UUID id) {
         this.id = id;
     }
-
+    @NotBlank(message = "Price range required")
     public String getPriceRange() {
         return priceRange;
     }
@@ -38,6 +66,7 @@ public class Details {
         this.priceRange = priceRange;
     }
 
+    @NotBlank(message = "Info about restaurant required")
     public String getAbout() {
         return about;
     }
@@ -47,6 +76,7 @@ public class Details {
     }
 
     @ElementCollection
+    @NotBlank(message = "Special diets required")
     public List<String> getSpecialDiets() {
         return specialDiets;
     }
@@ -56,6 +86,7 @@ public class Details {
     }
 
     @ElementCollection
+    @NotBlank(message = "Features required")
     public List<String> getFeatures() {
         return features;
     }
@@ -65,6 +96,7 @@ public class Details {
     }
 
     @ElementCollection
+    @NotBlank(message = "Cuisines required")
     public List<String> getCuisines() {
         return cuisines;
     }
@@ -74,6 +106,7 @@ public class Details {
     }
 
     @ElementCollection
+    @NotBlank(message = "Meals required")
     public List<String> getMeals() {
         return meals;
     }
