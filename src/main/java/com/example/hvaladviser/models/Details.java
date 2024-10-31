@@ -38,6 +38,18 @@ public class Details {
       */
     protected Details() {/** do nothing */}
 
+    /**
+     * Constructs a new {@code Details} instance with the provided attributes.
+     *
+     * @param id            the unique identifier of the details
+     * @param priceRange    the price range of the restaurant
+     * @param about         the info about of the restaurant
+     * @param specialDiets  the special diets of the restaurant
+     * @param features      the features of the restaurant
+     * @param cuisines      the cuisines of the restaurant
+     * @param meals         the meals of the restaurant
+     *
+     */
     public Details(UUID id, String priceRange, String about, List<String> specialDiets, List<String> features, List<String> cuisines, List<String> meals) {
         this.id = id;
         this.priceRange = priceRange;
