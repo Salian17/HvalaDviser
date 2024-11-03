@@ -3,6 +3,7 @@ package com.example.hvaladviser.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.*;
 
 import java.util.UUID;
 
@@ -31,6 +32,15 @@ public class User {
      */
     protected User() { /* do nothing */ }
 
+    /**
+     * Constructs a new {@code User} instance with the provided attributes.
+     *
+     * @param firstName the first name of the user
+     * @param lastName  the last name of the user
+     * @param username  the unique username of the user
+     * @param email     the email address of the user
+     * @param password  the password for the user account
+     */
     public User(String firstName, String lastName, String username, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,6 +58,7 @@ public class User {
         this.id = id;
     }
 
+    @NotBlank(message = "First name is required")
     public String getFirstName() {
         return firstName;
     }
@@ -56,6 +67,7 @@ public class User {
         this.firstName = firstName;
     }
 
+    @NotBlank(message = "Last name is required")
     public String getLastName() {
         return lastName;
     }
@@ -64,6 +76,8 @@ public class User {
         this.lastName = lastName;
     }
 
+    @NotBlank(message = "Username is required")
+    @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters")
     public String getUsername() {
         return username;
     }
@@ -72,6 +86,7 @@ public class User {
         this.username = username;
     }
 
+    @NotBlank(message = "Email is required")
     public String getEmail() {
         return email;
     }
@@ -80,6 +95,8 @@ public class User {
         this.email = email;
     }
 
+    @NotBlank(message = "Password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters")
     public String getPassword() {
         return password;
     }
