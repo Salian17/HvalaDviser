@@ -1,7 +1,10 @@
 package com.example.hvaladviser.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.UUID;
 
@@ -20,7 +23,7 @@ import java.util.UUID;
  */
 @Entity
 public class Location {
-    @Id
+
     private UUID id;
     private String phone;
     private String website;
@@ -52,6 +55,8 @@ public class Location {
         this.coordinate = coordinate;
     }
 
+    @Id
+    @GeneratedValue
     public UUID getId() {
         return id;
     }
@@ -60,6 +65,7 @@ public class Location {
         this.id = id;
     }
 
+    @NotBlank(message = "Phone is required")
     public String getPhone() {
         return phone;
     }
@@ -68,6 +74,7 @@ public class Location {
         this.phone = phone;
     }
 
+    @NotBlank(message = "Website is required")
     public String getWebsite() {
         return website;
     }
@@ -76,6 +83,8 @@ public class Location {
         this.website = website;
     }
 
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email should be valid")
     public String getEmail() {
         return email;
     }
@@ -84,6 +93,7 @@ public class Location {
         this.email = email;
     }
 
+    @NotBlank(message = "Location is required")
     public String getLocation() {
         return location;
     }
@@ -92,10 +102,10 @@ public class Location {
         this.location = location;
     }
 
+    @NotBlank(message = "Coordinate is required")
     public String getCoordinate() {
         return coordinate;
     }
-
 
     public void setCoordinate(String coordinate) {
         this.coordinate = coordinate;
