@@ -1,7 +1,10 @@
 package com.example.hvaladviser.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 import java.util.UUID;
@@ -23,7 +26,7 @@ import java.util.UUID;
  */
 @Entity
 public class Feedback {
-    @Id
+
     private UUID id;
     private Integer total_count;
     private Integer position_in_top;
@@ -39,6 +42,19 @@ public class Feedback {
      */
     public Feedback() { /* do nothing */ }
 
+    /**
+     * Constructs a new {@code Feedback} instance with the provided attributes.
+     *
+     * @param id               The unique identifier for the feedback.
+     * @param total_count      The total number of reviews submitted by the user.
+     * @param position_in_top  The position of the restaurant in the user's personal ranking.
+     * @param food_rating      The rating given by the user for the food.
+     * @param atmosphere_rating The rating given by the user for the atmosphere.
+     * @param value_rating     The rating given by the user for value.
+     * @param service_rating   The rating given by the user for the service.
+     * @param date             The date when the feedback was submitted.
+     * @param text             The review text.
+     */
     public Feedback(UUID id, Integer total_count, Integer position_in_top, Double food_rating, Double atmosphere_rating, Double value_rating, Double service_rating, Date date, String text) {
         this.id = id;
         this.total_count = total_count;
@@ -51,6 +67,8 @@ public class Feedback {
         this.text = text;
     }
 
+    @Id
+    @GeneratedValue
     public UUID getId() {
         return id;
     }
@@ -75,6 +93,7 @@ public class Feedback {
         this.position_in_top = position_in_top;
     }
 
+    @NotNull(message = "Food rating is required")
     public Double getFood_rating() {
         return food_rating;
     }
@@ -83,6 +102,7 @@ public class Feedback {
         this.food_rating = food_rating;
     }
 
+    @NotNull(message = "Atmosphere rating is required")
     public Double getAtmosphere_rating() {
         return atmosphere_rating;
     }
@@ -91,6 +111,7 @@ public class Feedback {
         this.atmosphere_rating = atmosphere_rating;
     }
 
+    @NotNull(message = "Value rating is required")
     public Double getValue_rating() {
         return value_rating;
     }
@@ -99,6 +120,7 @@ public class Feedback {
         this.value_rating = value_rating;
     }
 
+    @NotNull(message = "Service rating is required")
     public Double getService_rating() {
         return service_rating;
     }
@@ -115,6 +137,7 @@ public class Feedback {
         this.date = date;
     }
 
+    @NotBlank(message = "Text is required")
     public String getText() {
         return text;
     }
