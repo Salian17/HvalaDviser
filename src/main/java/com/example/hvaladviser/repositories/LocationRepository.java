@@ -2,6 +2,7 @@ package com.example.hvaladviser.repositories;
 
 import com.example.hvaladviser.models.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
@@ -11,5 +12,6 @@ import java.util.UUID;
  *
  * @author Salian17
  */
+@Repository
 public interface LocationRepository extends JpaRepository<Location, UUID> {
 }
